@@ -12,7 +12,7 @@ public class MBTARouteDTO {
     @Id
     private String id;
     @JsonAlias("long_name")
-    private String longName;
+    private String name;
 
     public MBTARouteDTO() {
     }
@@ -25,11 +25,11 @@ public class MBTARouteDTO {
         this.id = id;
     }
 
-    public String getLongName() {
-        return longName;
+    public String getName() {
+        return name;
     }
 
-    public void setLongName(String longName) {
-        this.longName = longName;
+    public void setName(String name) {
+        this.name = name;
     }
 }
