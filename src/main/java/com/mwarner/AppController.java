@@ -22,36 +22,42 @@ public class AppController {
 
     @Get
     public HttpResponse<Map<String, Object>> index() {
-        Map<String, Object> out = new HashMap<>();
-        out.put("message", "Welcome to my PaymentWorks coding challenge sample app!  Please see the README for a " +
-                "list of available endpoints.");
-        return HttpResponse.ok(out);
+        String message = "Welcome to my PaymentWorks coding challenge sample app!  Please see the README for a " +
+                "list of available endpoints.";
+        return HttpResponse.ok(jsonResponse(message));
     }
 
     @Get("/lines")
-    public HttpResponse<List<MBTARouteDTO>> listLines() {
+    public HttpResponse listLines() {
         try {
             List<MBTARouteDTO> lines = mbtaService.listLines();
             return HttpResponse.ok(lines);
         } catch (Exception e) {
             String message = "An unexpected error has occurred: " + e.getMessage();
             LOG.error(message, e);
-            return HttpResponse.serverError();
+            return HttpResponse.serverError(jsonResponse(message));
         }
     }
 
     @Get("/stops")
-    public HttpResponse<List<MBTAStopDTO>> listStops(@QueryValue @NotNull String line) {
+    public HttpResponse listStops(@QueryValue @NotNull String line) {
         try {
             List<MBTAStopDTO> stops = mbtaService.listStopsForLine(line);
             if (stops == null || stops.isEmpty()) {
-                return HttpResponse.notFound();
+                return HttpResponse.notFound(jsonResponse("Not Found"));
             } else {
                 return HttpResponse.ok(stops);
             }
         } catch (Exception e) {
-            LOG.error("An unexpected error has occurred: " + e.getMessage(), e);
-            return HttpResponse.serverError();
+            String message = "An unexpected error has occurred: " + e.getMessage();
+            LOG.error(message, e);
+            return HttpResponse.serverError(jsonResponse(message));
         }
+    }
+
+    private static Map<String, Object> jsonResponse(String message) {
+        Map<String, Object> resp = new HashMap<>();
+        resp.put("message", message);
+        return resp;
     }
 }
