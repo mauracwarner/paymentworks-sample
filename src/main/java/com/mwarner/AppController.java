@@ -24,7 +24,7 @@ public class AppController {
     private MBTAService mbtaService;
 
     @Get
-    public HttpResponse<Map<String, Object>> index() {
+    public HttpResponse index() {
         String message = "Welcome to my PaymentWorks coding challenge sample app!  Please see the README for a " +
                 "list of available endpoints.";
         return HttpResponse.ok(jsonResponse(message));

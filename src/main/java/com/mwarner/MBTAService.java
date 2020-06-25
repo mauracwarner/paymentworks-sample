@@ -22,7 +22,7 @@ public class MBTAService {
     /**
      * List all light rail and subway lines on the MBTA.
      *
-     * @return list of line ids and names
+     * @return list of line IDs and names
      */
     List<MBTARouteDTO> listLines() {
         String getLinesUri = "/routes?type=0,1";
@@ -34,8 +34,8 @@ public class MBTAService {
     /**
      * List all stops on a given MBTA line.
      *
-     * @param lineId
-     * @return list of stop names and ids
+     * @param lineId - ID of the line to list stops for, e.g. "Orange" (required)
+     * @return list of stop names and IDs
      */
     List<MBTAStopDTO> listStopsForLine(String lineId) {
         String getStopsUri = "/stops?route=" + lineId.trim();
