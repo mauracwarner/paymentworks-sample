@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This is the main controller for the app.  All endpoints are defined here.
+ */
 @Controller
 public class AppController {
 
@@ -27,6 +30,9 @@ public class AppController {
         return HttpResponse.ok(jsonResponse(message));
     }
 
+    /**
+     * List all subway and light rail lines on the MBTA.
+     */
     @Get("/lines")
     public HttpResponse listLines() {
         try {
@@ -39,6 +45,11 @@ public class AppController {
         }
     }
 
+    /**
+     * List all stops on the specified line.
+     *
+     * @param line - the line ID (required)
+     */
     @Get("/stops")
     public HttpResponse listStops(@QueryValue @NotNull String line) {
         try {

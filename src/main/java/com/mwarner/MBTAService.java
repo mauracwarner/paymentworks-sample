@@ -7,6 +7,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.List;
 
+/**
+ * This service makes requests to the MBTA v3 API and parses the responses into DTOs.
+ */
 @Singleton
 public class MBTAService {
 
@@ -16,6 +19,11 @@ public class MBTAService {
     @Inject
     private RxHttpClient http;
 
+    /**
+     * List all light rail and subway lines on the MBTA.
+     *
+     * @return list of line ids and names
+     */
     List<MBTARouteDTO> listLines() {
         String getLinesUri = "/routes?type=0,1";
         String json = http.toBlocking().retrieve(getLinesUri);
@@ -23,6 +31,12 @@ public class MBTAService {
         return converter.readDocumentCollection(json.getBytes(), MBTARouteDTO.class).get();
     }
 
+    /**
+     * List all stops on a given MBTA line.
+     *
+     * @param lineId
+     * @return list of stop names and ids
+     */
     List<MBTAStopDTO> listStopsForLine(String lineId) {
         String getStopsUri = "/stops?route=" + lineId.trim();
         String json = http.toBlocking().retrieve(getStopsUri);

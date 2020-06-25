@@ -5,6 +5,10 @@ PaymentWorks sample app coding challenge instructions.  The app has
 3 endpoints and can be used via any HTTP client.  By default, it will
 listen on port 8080 when run.
 
+All of my code is under `src/main/java`.  Given more time, I would have
+added tests under `src/test`, but since I was only supposed to spend a
+couple of hours on this I didn't bother.
+
 ## Tech specs
 
 * Micronaut 1.1.4
