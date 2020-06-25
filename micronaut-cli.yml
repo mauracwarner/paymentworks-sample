@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: com.mwarner
+---
+testFramework: junit
+sourceLanguage: java
