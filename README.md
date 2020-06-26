@@ -49,7 +49,7 @@ Sample response body:
 [
   {
     "id": "Red",
-    "longName": "Red Line"
+    "name": "Red Line"
   }
 ]
 ```
